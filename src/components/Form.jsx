@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../features/task/taskSlice";
 
@@ -7,21 +7,58 @@ export default function Form() {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
   const [status, setStatus] = useState("");
+  const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
-  const { isLoading, isError, error, editing } = useSelector(
-    (state) => state.task
-  );
-  console.log(editing);
+  const { isLoading, isError, error } = useSelector((state) => state.task);
+  const { editing } = useSelector((state) => state.task) || {};
+  useEffect(() => {
+    const { id, title, description, priority, status } = editing || {};
+    if (id) {
+      setEditMode(true);
+      setTitle(title);
+      setDescription(description);
+      setPriority(priority);
+      setStatus(status);
+    } else {
+      setEditMode(false);
+      reset();
+    }
+  }, [editing]);
+  const reset = () => {
+    setTitle("");
+    setDescription("");
+    setStatus("");
+    setPriority("");
+  };
+  const cancelEditMode = () => {
+    reset();
+    setEditMode(false);
+  };
   const handleCreate = (e) => {
     e.preventDefault();
     dispatch(createTask({ title, description, priority, status }));
-    // reset();
+    reset();
+  };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    dispatch(
+      changeTransaction({
+        id: editing?.id,
+        data: {
+          name: name,
+          amount: amount,
+          type: type,
+        },
+      })
+    );
+    setEditMode(false);
+    reset();
   };
 
   return (
     <div className="form">
       <h3>Add new Task</h3>
-      <form onSubmit={handleCreate}>
+      <form onSubmit={editMode ? handleUpdate : handleCreate}>
         <div className="form-group">
           <label>title</label>
           <input
@@ -92,9 +129,14 @@ export default function Form() {
           </div>
         </div>
 
-        <button className="btn">Add Task</button>
+        <button className="btn">{editMode ? "Update Task" : "Add Task"}</button>
       </form>
-      <button className="btn cancel_edit">filter</button>
+
+      {editMode && (
+        <button className="btn cancel_edit" onClick={cancelEditMode}>
+          Cancel Edit
+        </button>
+      )}
     </div>
   );
 }
