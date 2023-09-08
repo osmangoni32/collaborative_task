@@ -67,6 +67,13 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+form-group2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .radio {
     grid-template-columns: 1fr 1fr 1fr;
@@ -106,7 +113,11 @@ label {
     align-items: center;
     gap: 5px;
 }
-
+.radio_group2 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 .transaction {
     margin: 10px 0;
     color: white;
@@ -190,6 +201,12 @@ label {
     }
 
     .form-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: stretch;
+    }
+    .form-group2 {
         display: flex;
         flex-direction: column;
         justify-content: left;

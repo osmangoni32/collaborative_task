@@ -1,22 +1,12 @@
 {
   "tasks": [
     {
-      "name": "osman goni",
-      "type": "income",
-      "amount": 29,
+      "title": "osman goni",
+      "description": "income",
+      "priority": "high",
+      "status":"completed",
       "id": 1
-    },
-    {
-      "name": "ibos",
-      "type": "income",
-      "amount": 66666666,
-      "id": 2
-    },
-    {
-      "name": "osman goni",
-      "type": "income",
-      "amount": 1,
-      "id": 3
     }
+    
   ]
 }
