@@ -1,14 +1,14 @@
 {
-  "name": "lws-json-server-expense-tracker",
-  "description": "Example in memory tasks api with json-server by osman",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "json-server --watch db_task.json --no-cors true --port 9000"
-  },
-  "dependencies": {
-    "json-server": "^0.17.0"
-  },
-  "keywords": [],
-  "author": "osman"
+    "name": "lws-json-server-expense-tracker",
+    "description": "Example in memory collaborative task api with json-server by osman",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "json-server --watch db_tasks.json --no-cors true --port 9000"
+    },
+    "dependencies": {
+        "json-server": "^0.17.0"
+    },
+    "keywords": [],
+    "author": "osman"
 }
