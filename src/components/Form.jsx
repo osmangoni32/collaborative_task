@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "../features/task/taskSlice";
+import { changeTask, createTask } from "../features/task/taskSlice";
 
 export default function Form() {
   const [title, setTitle] = useState("");
@@ -42,12 +42,13 @@ export default function Form() {
   const handleUpdate = (e) => {
     e.preventDefault();
     dispatch(
-      changeTransaction({
+      changeTask({
         id: editing?.id,
         data: {
-          name: name,
-          amount: amount,
-          type: type,
+          title,
+          description,
+          priority,
+          status,
         },
       })
     );
