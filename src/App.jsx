@@ -1,9 +1,8 @@
 //import "./App.css";
-import Layout from "./components/Layout";
-import Form from "./components/Form";
-import Transactions from "./components/tasks/Tasklist";
 import Balance from "./components/Filter";
-
+import Form from "./components/Form";
+import Layout from "./components/Layout";
+import Transactions from "./components/tasks/Tasklist";
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <>
         <Balance />
         <Form />
+
         <Transactions />
       </>
     </Layout>

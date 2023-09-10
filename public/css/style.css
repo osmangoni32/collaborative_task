@@ -236,3 +236,15 @@ label {
     font-size: 95% !important;
   }
 }
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: stretch;
+}
+.filterItem{
+    flex-grow: 1;
+    background-color: #4338ca;
+    color: white;
+}

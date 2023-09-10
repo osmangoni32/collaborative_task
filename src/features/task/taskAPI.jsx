@@ -4,6 +4,10 @@ export const getTasks = async () => {
   const response = await axios.get("/tasks");
   return response.data;
 };
+export const getUsers = async () => {
+  const response = await axios.get("/users");
+  return response.data;
+};
 export const addTask = async (data) => {
   const response = await axios.post("/tasks", data);
   return response.data;
