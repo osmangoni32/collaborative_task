@@ -1,15 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addTask, deleteTask, editTask, getTasks } from "./taskAPI";
+import { addTask, deleteTask, editTask, getTasks, getUsers } from "./taskAPI";
 
 const initialState = {
   tasks: [],
   isLoading: false,
   isError: false,
-  erroe: "",
+  error: "",
   editing: {},
+  users: [],
 };
 
 //async thunks
+export const fetchUsers = createAsyncThunk("task/fetchUsers", async () => {
+  const users = await getUsers();
+  return users;
+});
 export const fetchTasks = createAsyncThunk("task/fetchTasks", async () => {
   const tasks = await getTasks();
   return tasks;
@@ -43,6 +48,21 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.users = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.error = action.error?.message;
+        state.users = [];
+      })
       .addCase(fetchTasks.pending, (state) => {
         state.isError = false;
         state.isLoading = true;

@@ -1,19 +1,20 @@
 //import "./App.css";
-import Balance from "./components/Filter";
-import Form from "./components/Form";
-import Layout from "./components/Layout";
-import Transactions from "./components/tasks/Tasklist";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import PublicOutlet from "./components/PublicOutlet";
+import Home from "./components/pages/Home";
+import Tasks from "./components/pages/Tasks";
 
 function App() {
   return (
-    <Layout>
-      <>
-        <Balance />
-        <Form />
-
-        <Transactions />
-      </>
-    </Layout>
+    <Router>
+      <Routes>
+        {/* <Route path="/tasks" element={<Tasks />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/tasks" element={<PublicOutlet />}>
+          <Route path="/tasks" element={<Tasks />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
